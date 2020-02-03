@@ -1,0 +1,26 @@
+{
+    "test": {
+        "NODE_ENV": "test",
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/Boilerplate-Test-DB",
+        "JWT_SECRET": "alksdasfhudsdfrtgyhujhgfdswdfghnjmhgfdesw4deftgbhnjmnhg235433454y5rhtgfghu",
+        "GRAPHIQL": true,
+        "JWT_EXPIRY_TIME": "1h",
+        "IGNORE_EXPIRY": false,
+        "SYSTEM_CONFIGURATION_ENV": {
+            "SOME_SYSTEM_CONFIGURATION": true
+        }
+    },
+    "development": {
+        "NODE_ENV": "development",
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/Boilerplate-Dev-DB",
+        "JWT_SECRET": "asdfg34778934576835yuihjfhjfjksdiou908wjdjksfw4435t5gfguh",
+        "GRAPHIQL": true,
+        "JWT_EXPIRY_TIME": "1d",
+        "IGNORE_EXPIRY": false,
+        "SYSTEM_CONFIGURATION_ENV": {
+            "SOME_SYSTEM_CONFIGURATION": true
+        }
+    }
+}

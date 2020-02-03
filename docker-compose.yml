@@ -1,0 +1,72 @@
+version: '3'
+services:
+  app:
+    container_name: boilerplate_apis
+    depends_on:
+      - "setup-rs"
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/boilerplate_apis
+    command: ["npm", "start"]
+    environment:
+       - NODE_ENV=development-docker
+       - PORT=3000
+       - MONGODB_URI=mongodb://mongo/Boilerplate-Dev-DB
+       - JWT_SECRET=asdfg34778934576835yuihjfhjfjksdiou908wjdjksfw4435t5gfguh
+       - GRAPHIQL=true
+       - JWT_EXPIRY_TIME=1d
+       - IGNORE_EXPIRY=false
+###########################################################
+  test:
+    container_name: boilerplate_test
+    depends_on:
+      - "setup-rs"
+    restart: always
+    build: .
+    volumes:
+      - .:/boilerplate_apis
+    command: ["npm", "run", "test-docker-watch"]
+    environment:
+       - NODE_ENV=test-docker
+       - PORT=3000
+       - MONGODB_URI=mongodb://mongo/Boilerplate-Test-DB
+       - JWT_SECRET=alksdasfhudsdfrtgyhujhgfdswdfghnjmhgfdesw4deftgbhnjmnhg235433454y5rhtgfghu
+       - GRAPHIQL=false
+       - JWT_EXPIRY_TIME=1h
+       - IGNORE_EXPIRY=true
+###########################################################  
+  mongo:
+    image: "mongo-start"
+    build: ./mongo-rs0-1
+    expose:
+      - 27017
+    ports:
+      - "27017:27017"
+    depends_on:
+      - "mongo2"
+      - "mongo3"
+###########################################################  
+  mongo2:
+    image: "mongo"
+    command: --replSet rs0 --oplogSize 128
+    expose:
+      - 27017
+    ports:
+      - "27018:27017"
+###########################################################
+  mongo3:
+    image: "mongo"
+    command: --replSet rs0 --oplogSize 128
+    expose:
+      - 27017
+    ports:
+      - "27019:27017"
+###########################################################
+  setup-rs:
+    image: "setup-rs"
+    build: ./setup
+    depends_on:
+      - "mongo"

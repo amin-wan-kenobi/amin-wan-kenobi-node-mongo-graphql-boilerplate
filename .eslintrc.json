@@ -1,0 +1,42 @@
+{
+    "env": {
+        "es6": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "comma-dangle": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": [
+            "error",
+            {
+                "vars": "local",
+                "args": "none"
+            }
+        ],
+        "no-empty": [
+                "error", {
+                    "allowEmptyCatch": true
+                }
+        ],
+        "no-console": [
+            "error",
+            {
+                "allow": ["log", "warn"]
+            }
+        ],
+        "semi": "error",
+        "no-empty-function": "error"
+    }
+}
