@@ -14,10 +14,12 @@
         "sourceType": "module"
     },
     "rules": {
-        "comma-dangle": [
-            "error",
-            "always"
-        ],
+        "comma-dangle": ["error", {
+            "objects": "always",
+            "arrays": "always",
+            "imports": "always",
+            "exports": "always"
+        }],
         "no-unused-vars": [
             "error",
             {
